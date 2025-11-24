@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MutantController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MutantDetector</a> &gt; <a href="index.source.html" class="el_package">com.example.MutantDetector.controller</a> &gt; <span class="el_source">MutantController.java</span></div><h1>MutantController.java</h1><pre class="source lang-java linenums">package com.example.MutantDetector.controller;
+
+
+import com.example.MutantDetector.dto.DnaRequest;
+import com.example.MutantDetector.dto.StatsResponse;
+import com.example.MutantDetector.service.MutantService;
+import com.example.MutantDetector.service.StatsService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping
+@Tag(name = &quot;Mutant Detector&quot;, description = &quot;API para detección de mutantes y estadísticas de ADN&quot; )
+public class MutantController {
+
+    private final MutantService mutantService;
+    private final StatsService statsService;
+
+    @PostMapping(&quot;/mutant&quot;)
+    @Operation(summary = &quot;Verifica si un ADN pertenece a un mutante&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;El ADN pertenece a un mutante&quot;),
+            @ApiResponse(responseCode = &quot;403&quot;, description = &quot;El ADN pertenece a un humano&quot;),
+            @ApiResponse(responseCode = &quot;400&quot;, description = &quot;Secuencia de ADN inválida&quot;)
+    })
+    public ResponseEntity&lt;Void&gt; verificarMutante(@Valid @RequestBody DnaRequest request){
+<span class="fc" id="L35">        boolean esMutante = mutantService.esMutante(request.dna());</span>
+
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        return esMutante</span>
+<span class="fc" id="L38">                ? ResponseEntity.ok().build() // 200 OK</span>
+<span class="fc" id="L39">                : ResponseEntity.status(HttpStatus.FORBIDDEN).build();</span>
+    }
+
+    @GetMapping(&quot;/stats&quot;)
+    @Operation(summary = &quot;Obtiene estadísticas globales de análisis de ADN&quot;)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Estadísticas recuperadas correctamente&quot;)
+    })
+    public ResponseEntity&lt;StatsResponse&gt; obtenerEstadisticas(){
+<span class="fc" id="L48">        StatsResponse stats = statsService.obtenerEstadisticas();</span>
+<span class="fc" id="L49">        return ResponseEntity.ok(stats);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MutantService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MutantDetector</a> &gt; <a href="index.source.html" class="el_package">com.example.MutantDetector.service</a> &gt; <span class="el_source">MutantService.java</span></div><h1>MutantService.java</h1><pre class="source lang-java linenums">package com.example.MutantDetector.service;
+
+import com.example.MutantDetector.entity.DnaRecord;
+import com.example.MutantDetector.exception.HashGenerationException;
+import com.example.MutantDetector.repository.DnaRecordRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+@Service
+@RequiredArgsConstructor
+public class MutantService {
+
+    private final DnaRecordRepository repository;
+    private final MutantDetector detector;
+
+    public boolean esMutante(String[] adn){
+<span class="fc" id="L21">        String hash = calcularHash(adn);</span>
+
+<span class="fc" id="L23">        return repository.findByHashAdn(hash)</span>
+<span class="fc" id="L24">                .map(DnaRecord::isEsMutante)</span>
+<span class="fc" id="L25">                .orElseGet(()-&gt;{</span>
+<span class="fc" id="L26">                    boolean resultado = detector.esMutante(adn);</span>
+
+<span class="fc" id="L28">                    repository.save(</span>
+<span class="fc" id="L29">                            DnaRecord.builder()</span>
+<span class="fc" id="L30">                                    .hashAdn(hash)</span>
+<span class="fc" id="L31">                                    .esMutante(resultado)</span>
+<span class="fc" id="L32">                                    .build()</span>
+                    );
+<span class="fc" id="L34">                    return resultado;</span>
+                });
+    }
+
+    public String calcularHash(String[] adn) {
+
+<span class="fc bfc" id="L40" title="All 4 branches covered.">        if (adn == null || adn.length == 0) {</span>
+<span class="fc" id="L41">            throw new HashGenerationException(&quot;ADN inválido para hashing&quot;, null);</span>
+        }
+
+<span class="fc" id="L44">        String adnConcatenado = String.join(&quot;&quot;, adn);</span>
+
+        try {
+<span class="fc" id="L47">            MessageDigest digest = MessageDigest.getInstance(&quot;SHA-256&quot;);</span>
+<span class="fc" id="L48">            byte[] hashBytes = digest.digest(adnConcatenado.getBytes(StandardCharsets.UTF_8));</span>
+
+            // Convertir bytes a hex
+<span class="fc" id="L51">            StringBuilder hexString = new StringBuilder();</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">            for (byte b : hashBytes) {</span>
+<span class="fc" id="L53">                String hex = Integer.toHexString(0xff &amp; b);</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">                if (hex.length() == 1) hexString.append('0');</span>
+<span class="fc" id="L55">                hexString.append(hex);</span>
+            }
+<span class="fc" id="L57">            return hexString.toString();</span>
+
+<span class="nc" id="L59">        } catch (NoSuchAlgorithmException e) {</span>
+<span class="nc" id="L60">            throw new HashGenerationException(&quot;Error al calcular hash SHA-256 del adn&quot;, e);</span>
+        }
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MutantDetector.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MutantDetector</a> &gt; <a href="index.source.html" class="el_package">com.example.MutantDetector.service</a> &gt; <span class="el_source">MutantDetector.java</span></div><h1>MutantDetector.java</h1><pre class="source lang-java linenums">package com.example.MutantDetector.service;
+
+import org.springframework.stereotype.Service;
+import java.util.Set;
+
+@Service
+<span class="fc" id="L7">public class MutantDetector {</span>
+
+<span class="fc" id="L9">    private static final Set&lt;Character&gt; VALIDOS = Set.of('A','T','C','G');</span>
+    private static final int SEQ = 4;
+
+    public boolean esMutante(String[] dna) {
+
+        
+<span class="fc bfc" id="L15" title="All 4 branches covered.">        if (dna == null || dna.length &lt; SEQ) return false;</span>
+
+<span class="fc" id="L17">        int n = dna.length;</span>
+
+        
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        for (String fila : dna) {</span>
+<span class="pc bpc" id="L21" title="2 of 4 branches missed.">            if (fila == null || fila.length() != n) return false;</span>
+
+<span class="fc bfc" id="L23" title="All 2 branches covered.">            for (char c : fila.toCharArray()) {</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">                if (!VALIDOS.contains(c)) return false;</span>
+            }
+        }
+
+        // Convertir a matriz char[][]
+<span class="fc" id="L29">        char[][] matriz = new char[n][n];</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        for (int i = 0; i &lt; n; i++) {</span>
+<span class="fc" id="L31">            matriz[i] = dna[i].toCharArray();</span>
+        }
+
+       
+<span class="fc" id="L35">        int contador = 0;</span>
+
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        for (int fila = 0; fila &lt; n; fila++) {</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">            for (int col = 0; col &lt; n; col++) {</span>
+
+<span class="fc bfc" id="L40" title="All 2 branches covered.">                boolean puedeHoriz = col &lt;= n - SEQ;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">                boolean puedeVert = fila &lt;= n - SEQ;</span>
+<span class="fc bfc" id="L42" title="All 4 branches covered.">                boolean puedeDiagDesc = puedeHoriz &amp;&amp; puedeVert;</span>
+<span class="fc bfc" id="L43" title="All 4 branches covered.">                boolean puedeDiagAsc = puedeHoriz &amp;&amp; fila &gt;= SEQ - 1;</span>
+
+<span class="fc bfc" id="L45" title="All 4 branches covered.">                if (puedeHoriz &amp;&amp; haySecuenciaHorizontal(matriz, fila, col)) contador++;</span>
+<span class="fc bfc" id="L46" title="All 4 branches covered.">                if (puedeVert &amp;&amp; haySecuenciaVertical(matriz, fila, col)) contador++;</span>
+<span class="fc bfc" id="L47" title="All 4 branches covered.">                if (puedeDiagDesc &amp;&amp; haySecuenciaDiagonalDesc(matriz, fila, col)) contador++;</span>
+<span class="fc bfc" id="L48" title="All 4 branches covered.">                if (puedeDiagAsc &amp;&amp; haySecuenciaDiagonalAsc(matriz, fila, col)) contador++;</span>
+
+<span class="fc bfc" id="L50" title="All 2 branches covered.">                if (contador &gt; 1) return true; </span>
+            }
+        }
+
+<span class="fc" id="L54">        return false;</span>
+    }
+
+    
+    private boolean haySecuenciaHorizontal(char[][] m, int f, int c) {
+<span class="fc" id="L59">        char x = m[f][c];</span>
+<span class="fc bfc" id="L60" title="All 6 branches covered.">        return m[f][c + 1] == x &amp;&amp;</span>
+               m[f][c + 2] == x &amp;&amp;
+               m[f][c + 3] == x;
+    }
+
+    private boolean haySecuenciaVertical(char[][] m, int f, int c) {
+<span class="fc" id="L66">        char x = m[f][c];</span>
+<span class="fc bfc" id="L67" title="All 6 branches covered.">        return m[f + 1][c] == x &amp;&amp;</span>
+               m[f + 2][c] == x &amp;&amp;
+               m[f + 3][c] == x;
+    }
+
+    private boolean haySecuenciaDiagonalDesc(char[][] m, int f, int c) {
+<span class="fc" id="L73">        char x = m[f][c];</span>
+<span class="fc bfc" id="L74" title="All 6 branches covered.">        return m[f + 1][c + 1] == x &amp;&amp;</span>
+               m[f + 2][c + 2] == x &amp;&amp;
+               m[f + 3][c + 3] == x;
+    }
+
+    private boolean haySecuenciaDiagonalAsc(char[][] m, int f, int c) {
+<span class="fc" id="L80">        char x = m[f][c];</span>
+<span class="pc bpc" id="L81" title="1 of 6 branches missed.">        return m[f - 1][c + 1] == x &amp;&amp;</span>
+               m[f - 2][c + 2] == x &amp;&amp;
+               m[f - 3][c + 3] == x;
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

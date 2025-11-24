@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.MutantDetector.controller.MutantControllerTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2025-11-24T18:04:52.168Z" hostname="DESKTOP-3UPI4NK" time="0.744">
+  <properties/>
+  <testcase name="testAdnInvalidoMatrizNoCuadradaDevuelveBadRequest()" classname="com.example.MutantDetector.controller.MutantControllerTest" time="0.548"/>
+  <testcase name="testStatsDevuelveOkConJsonCorrecto()" classname="com.example.MutantDetector.controller.MutantControllerTest" time="0.147"/>
+  <testcase name="testAdnInvalidoCaracteresDevuelveBadRequest()" classname="com.example.MutantDetector.controller.MutantControllerTest" time="0.008"/>
+  <testcase name="testMutanteDevuelveOK()" classname="com.example.MutantDetector.controller.MutantControllerTest" time="0.017"/>
+  <testcase name="testBodyVacioDevuelveBadRequest()" classname="com.example.MutantDetector.controller.MutantControllerTest" time="0.007"/>
+  <testcase name="testHumanoValidoDevuelveForbidden()" classname="com.example.MutantDetector.controller.MutantControllerTest" time="0.007"/>
+  <system-out><![CDATA[2025-11-24T15:04:50.593-03:00  INFO 11424 --- [MutantDetector] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.MutantDetector.controller.MutantControllerTest]: MutantControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-11-24T15:04:50.615-03:00  INFO 11424 --- [MutantDetector] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.MutantDetector.MutantDetectorApplication for test class com.example.MutantDetector.controller.MutantControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.5)
+
+2025-11-24T15:04:50.652-03:00  INFO 11424 --- [MutantDetector] [    Test worker] c.e.M.controller.MutantControllerTest    : Starting MutantControllerTest using Java 21.0.8 with PID 11424 (started by Facultad in C:\Users\Facultad\Desktop\MutantDetector\MutantDetector\MutantDetector)
+2025-11-24T15:04:50.652-03:00 DEBUG 11424 --- [MutantDetector] [    Test worker] c.e.M.controller.MutantControllerTest    : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-11-24T15:04:50.652-03:00  INFO 11424 --- [MutantDetector] [    Test worker] c.e.M.controller.MutantControllerTest    : No active profile set, falling back to 1 default profile: "default"
+2025-11-24T15:04:50.921-03:00  INFO 11424 --- [MutantDetector] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-24T15:04:50.938-03:00  INFO 11424 --- [MutantDetector] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 1 JPA repository interface.
+2025-11-24T15:04:51.451-03:00  INFO 11424 --- [MutantDetector] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-24T15:04:51.463-03:00  INFO 11424 --- [MutantDetector] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-11-24T15:04:51.498-03:00  INFO 11424 --- [MutantDetector] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-24T15:04:51.501-03:00  INFO 11424 --- [MutantDetector] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2025-11-24T15:04:51.503-03:00  INFO 11424 --- [MutantDetector] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:mutantdb user=SA
+2025-11-24T15:04:51.503-03:00  INFO 11424 --- [MutantDetector] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2025-11-24T15:04:51.622-03:00  INFO 11424 --- [MutantDetector] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-24T15:04:51.636-03:00  INFO 11424 --- [MutantDetector] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24T15:04:51.784-03:00  WARN 11424 --- [MutantDetector] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-24T15:04:52.045-03:00  INFO 11424 --- [MutantDetector] [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:mutantdb'
+2025-11-24T15:04:52.124-03:00  INFO 11424 --- [MutantDetector] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-11-24T15:04:52.124-03:00  INFO 11424 --- [MutantDetector] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-11-24T15:04:52.128-03:00  INFO 11424 --- [MutantDetector] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2025-11-24T15:04:52.151-03:00  INFO 11424 --- [MutantDetector] [    Test worker] c.e.M.controller.MutantControllerTest    : Started MutantControllerTest in 1.532 seconds (process running for 13.267)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

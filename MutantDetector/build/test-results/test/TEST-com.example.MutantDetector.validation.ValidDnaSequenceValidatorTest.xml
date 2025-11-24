@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.MutantDetector.validation.ValidDnaSequenceValidatorTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2025-11-24T18:04:53.255Z" hostname="DESKTOP-3UPI4NK" time="0.006">
+  <properties/>
+  <testcase name="testAdnConCaracteresInvalidosNoEsValido()" classname="com.example.MutantDetector.validation.ValidDnaSequenceValidatorTest" time="0.001"/>
+  <testcase name="testAdnNullNoEsValido()" classname="com.example.MutantDetector.validation.ValidDnaSequenceValidatorTest" time="0.001"/>
+  <testcase name="testFilaNullNoEsValida()" classname="com.example.MutantDetector.validation.ValidDnaSequenceValidatorTest" time="0.001"/>
+  <testcase name="testAdnNoCuadradoNoEsValido()" classname="com.example.MutantDetector.validation.ValidDnaSequenceValidatorTest" time="0.0"/>
+  <testcase name="testAdnMenosDe4FilasNoEsValido()" classname="com.example.MutantDetector.validation.ValidDnaSequenceValidatorTest" time="0.0"/>
+  <testcase name="testAdnValidoNxN()" classname="com.example.MutantDetector.validation.ValidDnaSequenceValidatorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

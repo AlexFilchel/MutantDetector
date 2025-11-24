@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.MutantDetector.service.MutantDetectorTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2025-11-24T18:04:52.916Z" hostname="DESKTOP-3UPI4NK" time="0.026">
+  <properties/>
+  <testcase name="testAdnNoCuadrado()" classname="com.example.MutantDetector.service.MutantDetectorTest" time="0.007"/>
+  <testcase name="testHumanoSinSecuencias()" classname="com.example.MutantDetector.service.MutantDetectorTest" time="0.0"/>
+  <testcase name="testVacio()" classname="com.example.MutantDetector.service.MutantDetectorTest" time="0.0"/>
+  <testcase name="testNull()" classname="com.example.MutantDetector.service.MutantDetectorTest" time="0.001"/>
+  <testcase name="testMutanteHorizontalYVertical()" classname="com.example.MutantDetector.service.MutantDetectorTest" time="0.002"/>
+  <testcase name="testMutanteMultiplesSecuenciasEarlyTermination()" classname="com.example.MutantDetector.service.MutantDetectorTest" time="0.001"/>
+  <testcase name="testMutanteDiagonalAscendente()" classname="com.example.MutantDetector.service.MutantDetectorTest" time="0.001"/>
+  <testcase name="testHumanoMatriz5x5SinSecuencias()" classname="com.example.MutantDetector.service.MutantDetectorTest" time="0.0"/>
+  <testcase name="testHumanoConUnaSecuencia()" classname="com.example.MutantDetector.service.MutantDetectorTest" time="0.0"/>
+  <testcase name="testMutanteMatrizGrande10x10()" classname="com.example.MutantDetector.service.MutantDetectorTest" time="0.0"/>
+  <testcase name="testCaracteresInvalidos()" classname="com.example.MutantDetector.service.MutantDetectorTest" time="0.001"/>
+  <testcase name="testMutanteVertical()" classname="com.example.MutantDetector.service.MutantDetectorTest" time="0.001"/>
+  <testcase name="testMatriz1x1()" classname="com.example.MutantDetector.service.MutantDetectorTest" time="0.001"/>
+  <testcase name="testMatriz2x2()" classname="com.example.MutantDetector.service.MutantDetectorTest" time="0.0"/>
+  <testcase name="testMatriz3x3()" classname="com.example.MutantDetector.service.MutantDetectorTest" time="0.0"/>
+  <testcase name="testMutanteDiagonalDescendente()" classname="com.example.MutantDetector.service.MutantDetectorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
